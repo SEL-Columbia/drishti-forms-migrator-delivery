@@ -7,8 +7,8 @@ FILENAME="drishti-forms-migrator-${VERSION}.tar"
 SNAPSHOT_VERSION=`echo $VERSION | cut -d "-" -f1`
 EXTRACTED_DIRECTORY="drishti-forms-migrator-'${SNAPSHOT_VERSION}'-SNAPSHOT/bin"
 
-#copying content-migrator.yml to Prod
-scp content-migrator.yml xlsonaio://root/config-content-migrator.yml
+#copying drishti-forms-migrator.yml to Prod
+scp drishti-forms-migrator.yml linode://root/config-drishti-forms-migrator.yml
 
 echo "FETCHING FILE: ${FILENAME}"
 ssh xlsonaio '\
@@ -21,6 +21,6 @@ ssh xlsonaio '\
 	echo EXTRACTED DIRECTORY '${EXTRACTED_DIRECTORY}' && \
 	cd '${EXTRACTED_DIRECTORY}' && \
 	echo "Migrating Database"	&& \
-	sh ./drishti-content-migrator db migrate ../../config-content-migrator.yml && \
+	sh ./drishti-content-migrator db migrate ../../config-drishti-forms-migrator.yml && \
 	echo "Starting the service" && \
-	sh ./drishti-content-migrator server ../../config-content-migrator.yml &'
+	sh ./drishti-content-migrator server ../../config-drishti-forms-migrator.yml &'
