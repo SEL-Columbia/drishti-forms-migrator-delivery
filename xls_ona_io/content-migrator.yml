@@ -1,0 +1,34 @@
+pollingUrl: https://smartregistries.org/form-submissions?anm-id=demo1&timestamp=0&batch-size=100
+pollingUrlUsername: demo1
+pollingUrlPassword: 1
+
+database:
+  driverClass: org.postgresql.Driver
+  user: forms_migration_user
+  password: bottlebuttermilk
+  url: jdbc:postgresql://localhost/forms_migration/
+  properties:
+    charSet: UTF-8
+  maxWaitForConnection: 5s
+  validationQuery: "/* MyService Health Check */ SELECT 1"
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  checkConnectionHealthWhenIdleFor: 10s
+  closeConnectionIfIdleFor: 1 minute
+
+logging:
+  console:
+    enabled: true
+    threshold: ALL
+  file:
+    enabled: true
+    threshold: ALL
+    currentLogFilename: ./logs/forms_migration.log
+    archivedLogFilenamePattern: ./logs/forms_migration_%d.log.gz
+    archivedFileCount: 10
+    timeZone: IST
+
+http:
+  port: 9090
+  adminPort: 9091
