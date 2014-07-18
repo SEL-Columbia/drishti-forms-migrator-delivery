@@ -17,6 +17,10 @@ database:
   checkConnectionHealthWhenIdleFor: 10s
   closeConnectionIfIdleFor: 1 minute
 
+jobs:
+  scanUrl: app
+  defaultEveryScanInterval: 3min
+
 logging:
   console:
     enabled: true
@@ -30,5 +34,5 @@ logging:
     timeZone: IST
 
 http:
-  port: 9090
-  adminPort: 9091
+  port: 9080
+  adminPort: 9081
