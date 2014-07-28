@@ -1,4 +1,4 @@
-pollingUrl: https://smartregistries.org/form-submissions?anm-id=demo1&timestamp=0&batch-size=100
+pollingUrl: https://qa.smartregistries.org/all-form-submissions?timestamp=0&batch-size=100
 pollingUrlUsername: demo1
 pollingUrlPassword: 1
 
@@ -14,24 +14,22 @@ database:
   minSize: 8
   maxSize: 32
   checkConnectionWhileIdle: false
-  checkConnectionHealthWhenIdleFor: 10s
-  closeConnectionIfIdleFor: 1 minute
 
 jobs:
-  scanUrl: app
-  defaultEveryScanInterval: 3min
+  scanUrl: app.scheduler
+  scanIntervals:
+    JobScheduler: 3min
 
 logging:
-  console:
-    enabled: true
-    threshold: ALL
-  file:
-    enabled: true
-    threshold: ALL
-    currentLogFilename: ./logs/forms_migration.log
-    archivedLogFilenamePattern: ./logs/forms_migration_%d.log.gz
-    archivedFileCount: 10
-    timeZone: IST
+  loggers:
+    org.hibernate.engine.internal.StatisticalLoggingSessionEventListener: OFF
+  appenders:
+    - type: file
+      threshold: ALL
+      currentLogFilename: ./logs/content_migrator.log
+      archivedLogFilenamePattern: ./logs/content_migrator_%d.log.gz
+      archivedFileCount: 10
+      timeZone: IST
 
 http:
   port: 9080
