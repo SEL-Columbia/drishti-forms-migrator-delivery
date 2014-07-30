@@ -31,6 +31,10 @@ logging:
       archivedFileCount: 10
       timeZone: IST
 
-http:
-  port: 9080
-  adminPort: 9081
+server:
+  applicationConnectors:
+  - type: http
+    port: 9000
+  adminConnectors:
+  - type: http
+    port: 9001
